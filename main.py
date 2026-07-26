@@ -3,7 +3,7 @@ import sys
 import random 
 import math
 import time
-
+import asyncio
 
 pygame.init()
 
@@ -38,6 +38,17 @@ player_size = 40
 player_speed = 5
 player_rect = pygame.Rect(screen_width // 2, screen_height // 2, player_size, player_size)
 
+async def main():
+  running = True
+  while running:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        running = False
+
+    pygame.display.update()
+    await asyncio.sleep(0)
+    clock.tick(60)
+
 def make_npc_rect(width_position, height_position, npc_width, npc_height):
     return pygame.Rect(width_position, height_position, npc_width, npc_height)
 # NPC setup
@@ -45,17 +56,17 @@ npc_rect = make_npc_rect(screen_width // 2, screen_height // 2 - screen_height /
 sign_rect = make_npc_rect(screen_width // 2, screen_height // 2 - screen_height // 4, player_size, player_size)
 
 # Load player and NPC image (same for now)
-player_image = pygame.image.load(r"funny_puffin.gif").convert_alpha()
+player_image = pygame.image.load("workspace/count/assets/funny_puffin.gif").convert_alpha()
 player_image = pygame.transform.scale(player_image, (player_size, player_size))
 
-npc_image = pygame.image.load(r"funny_puffin.gif").convert_alpha()
+npc_image = pygame.image.load(r"workspace/count/assets/funny_puffin.gif").convert_alpha()
 npc_image = pygame.transform.scale(npc_image, (player_size, player_size))
 
-torch_image = pygame.image.load(r"torch.png").convert_alpha()
+torch_image = pygame.image.load(r"assets/torch.png").convert_alpha()
 torch_image = pygame.transform.scale(torch_image, (player_size, player_size))
 
 
-arrow_image_1 = pygame.image.load(r"arrow.png").convert_alpha()
+arrow_image_1 = pygame.image.load(r"assets/arrow.png").convert_alpha()
 arrow_image_1 = pygame.transform.scale(arrow_image_1, (player_size, player_size))
 arrow_image_2 = pygame.transform.rotate(arrow_image_1, 270)
 arrow_image_3 = pygame.transform.rotate(arrow_image_1, 90)
@@ -64,10 +75,10 @@ arrow_images = [arrow_image_1, arrow_image_2, arrow_image_3, arrow_image_4]
 arrow_images_save = arrow_images.copy()
 arrow_index = 0
 
-title_image_sh = pygame.image.load(r"title_sh.png").convert_alpha()
+title_image_sh = pygame.image.load(r"assets/title_sh.png").convert_alpha()
 title_image_sh = pygame.transform.scale(title_image_sh, (screen_width, screen_height))
 
-title_image_ch = pygame.image.load(r"title_ch.png").convert_alpha()
+title_image_ch = pygame.image.load(r"assets/title_ch.png").convert_alpha()
 title_image_ch = pygame.transform.scale(title_image_ch, (screen_width, screen_height))
 
 # visible flags
@@ -123,11 +134,6 @@ def make_textboxes(numberof_lines, npc_rect, linesinlist, textboxname):
 
         wait_b = True
         while wait_b:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         wait_b = False 

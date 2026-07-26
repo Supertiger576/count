@@ -49,6 +49,8 @@ async def main():
     await asyncio.sleep(0)
     clock.tick(60)
 
+
+
 def make_npc_rect(width_position, height_position, npc_width, npc_height):
     return pygame.Rect(width_position, height_position, npc_width, npc_height)
 # NPC setup
@@ -104,7 +106,7 @@ torch_l = make_npc_rect(screen_width - (player_size*27), screen_rect.height - (p
 torch_b = make_npc_rect(screen_rect.width - (player_size*16), screen_rect.height - (player_size*5), player_size, player_size)
 torches_list = [torch_l, torch_b, torch_r]
 # puzzle dict
-puzzles = [{"direction":"right", "puzzle_name": "spin_arrow"}, {"direction":"left", "puzzle_name": "TBD"}, {"direction":"down", "puzzle_name": "TBD"}, {"direction":"up", "puzzle_name": "no_lights"}]
+puzzles = [{"direction":"right", "puzzle_name": "spin_arrow"}, {"direction":"up", "puzzle_name": "no_lights"}]
 puzzles_save = puzzles.copy()
 # puzzle flags
 current_direction = "right"
@@ -468,3 +470,4 @@ while running:
     # Update screen
     pygame.display.flip()
     clock.tick(60)
+asyncio.run(main())

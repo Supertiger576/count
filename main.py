@@ -56,10 +56,10 @@ npc_rect = make_npc_rect(screen_width // 2, screen_height // 2 - screen_height /
 sign_rect = make_npc_rect(screen_width // 2, screen_height // 2 - screen_height // 4, player_size, player_size)
 
 # Load player and NPC image (same for now)
-player_image = pygame.image.load("workspace/count/assets/funny_puffin.gif").convert_alpha()
+player_image = pygame.image.load(r"assets/puffin.png").convert_alpha()
 player_image = pygame.transform.scale(player_image, (player_size, player_size))
 
-npc_image = pygame.image.load(r"workspace/count/assets/funny_puffin.gif").convert_alpha()
+npc_image = pygame.image.load(r"assets/puffinSide.png").convert_alpha()
 npc_image = pygame.transform.scale(npc_image, (player_size, player_size))
 
 torch_image = pygame.image.load(r"assets/torch.png").convert_alpha()
